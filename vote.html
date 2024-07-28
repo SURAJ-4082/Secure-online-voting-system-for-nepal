@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            background-color: #151b4e;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 15px;
+        }
+
+        .navbar a:hover {
+            background-color: #0a0e27;
+            border-radius: 5px;
+        }
+
+        .navbar .vote-btn {
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar .vote-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .switch-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .switch-box {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .switch-box:hover {
+            background-color: #0056b3;
+        }
+
+        .switch-box.active {
+            background-color: #0056b3;
+        }
+
+        .voting-section {
+            margin-bottom: 30px;
+        }
+
+        .voting-section h2 {
+            background-color: #151b4e;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .candidate-card {
+            background-color: #1e2a78;
+            padding: 20px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid #007bff;
+        }
+
+        .candidate-info {
+            flex: 3;
+        }
+
+        .candidate-info p {
+            margin: 5px 0;
+        }
+
+        .candidate-logo {
+            flex: 1;
+            text-align: center;
+        }
+
+        .candidate-logo img {
+            max-width: 50px;
+        }
+
+        .radio-button {
+            flex: 0 0 30px;
+            text-align: center;
+        }
+
+        .radio-button input {
+            width: 20px;
+            height: 20px;
+        }
+
+        .confirmation {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .confirmation label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .submit-btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .submit-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="profile.html">Personal Info</a>
+        <a href="election.html">Election</a>
+        <a href="contact.html">Contact</a>
+        <a href="vote.html" class="vote-btn">Vote</a>
+    </div>
+    <div class="container">
+        <div class="switch-container">
+            <div id="candidates-switch" class="switch-box active" onclick="showCandidates()">Candidates</div>
+            <div id="independents-switch" class="switch-box" onclick="showIndependents()">Independent</div>
+        </div>
+        <form id="voting-form" onsubmit="submitVote(event)">
+            <div id="candidates-section" class="voting-section">
+                <h2>Candidates</h2>
+                <div class="candidate-card">
+                    <div class="radio-button">
+                        <input type="radio" name="candidate" value="raghunandan-chaudhary">
+                    </div>
+                    <div class="candidate-info">
+                        <p><strong>Name:</strong> Raghunandan Chaudhary</p>
+                        <p><strong>Age:</strong> 48</p>
+                        <p><strong>Party:</strong> Congress</p>
+                        <p><strong>Education:</strong> BA (English Hons.)</p>
+                    </div>
+                    <div class="candidate-logo">
+                        <img src="congress.png" alt="Party Logo">
+                    </div>
+                </div>
+                <div class="candidate-card">
+                    <div class="radio-button">
+                        <input type="radio" name="candidate" value="sooraj-chaudhary">
+                    </div>
+                    <div class="candidate-info">
+                        <p><strong>Name:</strong> Sooraj Chaudhary</p>
+                        <p><strong>Age:</strong> 45</p>
+                        <p><strong>Party:</strong> Janmat</p>
+                        <p><strong>Education:</strong> BA (English Hons.)</p>
+                    </div>
+                    <div class="candidate-logo">
+                        <img src="janmat.png" alt="Party Logo">
+                    </div>
+                </div>
+                <div class="candidate-card">
+                    <div class="radio-button">
+                        <input type="radio" name="candidate" value="priyanka-khatri">
+                    </div>
+                    <div class="candidate-info">
+                        <p><strong>Name:</strong> Priyanka Khatri</p>
+                        <p><strong>Age:</strong> 40</p>
+                        <p><strong>Party:</strong> Unified</p>
+                        <p><strong>Education:</strong> MA (Political Science)</p>
+                    </div>
+                    <div class="candidate-logo">
+                        <img src="unified.png" alt="Party Logo">
+                    </div>
+                </div>
+                <div class="candidate-card">
+                    <div class="radio-button">
+                        <input type="radio" name="candidate" value="suraj-kumar">
+                    </div>
+                    <div class="candidate-info">
+                        <p><strong>Name:</strong> Suraj Kumar</p>
+                        <p><strong>Age:</strong> 55</p>
+                        <p><strong>Party:</strong> UML</p>
+                        <p><strong>Education:</strong> BCom</p>
+                    </div>
+                    <div class="candidate-logo">
+                        <img src="uml.png" alt="Party Logo">
+                    </div>
+                </div>
+            </div>
+            
+            <div id="independents-section" class="voting-section" style="display: none;">
+                <h2>Independents</h2>
+                <div class="candidate-card">
+                    <div class="radio-button">
+                        <input type="radio" name="independent" value="saraswati-chaudhary">
+                    </div>
+                    <div class="candidate-info">
+                        <p><strong>Name:</strong> Saraswati Chaudhary</p>
+                        <p><strong>Age:</strong> 42</p>
+                        <p><strong>Education:</strong> BA (English Hons.)</p>
+                    </div>
+                    <div class="candidate-logo">
+                        <img src="swantra.png" alt="Independent Logo">
+                    </div>
+                </div>
+                <div class="candidate-card">
+                    <div class="radio-button">
+                        <input type="radio" name="independent" value="rahul-singh">
+                    </div>
+                    <div class="candidate-info">
+                        <p><strong>Name:</strong> Rahul Singh</p>
+                        <p><strong>Age:</strong> 38</p>
+                        <p><strong>Education:</strong> MBA</p>
+                    </div>
+                    <div class="candidate-logo">
+                        <img src="swantra.png" alt="Independent Logo">
+                    </div>
+                </div>
+                <div class="candidate-card">
+                    <div class="radio-button">
+                        <input type="radio" name="independent" value="meera-kumar">
+                    </div>
+                    <div class="candidate-info">
+                        <p><strong>Name:</strong> Meera Kumar</p>
+                        <p><strong>Age:</strong> 50</p>
+                        <p><strong>Education:</strong> PhD (Sociology)</p>
+                    </div>
+                    <div class="candidate-logo">
+                        <img src="swantra.png" alt="Independent Logo">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="confirmation">
+                <label>
+                    <input type="checkbox" id="confirm-checkbox" onclick="toggleSubmitButton()">
+                    I have selected a candidate for the voting
+                </label>
+            </div>
+            <div class="submit-btn-container">
+                <button type="submit" class="submit-btn" id="submit-btn" style="display: none;">Submit</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function showCandidates() {
+            document.getElementById('candidates-section').style.display = 'block';
+            document.getElementById('independents-section').style.display = 'none';
+            document.getElementById('candidates-switch').classList.add('active');
+            document.getElementById('independents-switch').classList.remove('active');
+        }
+
+        function showIndependents() {
+            document.getElementById('candidates-section').style.display = 'none';
+            document.getElementById('independents-section').style.display = 'block';
+            document.getElementById('candidates-switch').classList.remove('active');
+            document.getElementById('independents-switch').classList.add('active');
+        }
+
+        function toggleSubmitButton() {
+            var checkbox = document.getElementById('confirm-checkbox');
+            var submitBtn = document.getElementById('submit-btn');
+            submitBtn.style.display = checkbox.checked ? 'block' : 'none';
+        }
+
+        function submitVote(event) {
+            event.preventDefault();
+            var candidate = document.querySelector('input[name="candidate"]:checked');
+            var independent = document.querySelector('input[name="independent"]:checked');
+
+            if (candidate) {
+                alert('You have selected Candidate: ' + candidate.value);
+            } else if (independent) {
+                alert('You have selected Independent: ' + independent.value);
+            } else {
+                alert('Please select a candidate or independent.');
+            }
+        }
+    </script>
+</body>
+</html>

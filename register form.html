@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Voting System</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            overflow-x: hidden;
+            text-align: center;
+        }
+        .container, .hero {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .form-container {
+            background-color: #1E1E1E;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .form-group input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+        .hero {
+            text-align: center;
+            padding: 20px;
+        }
+        .hero h1, .hero p {
+            color: #007BFF;
+            font-size: 1.5em;
+            margin: 0;
+        }
+        .hero p {
+            margin-top: 10px;
+        }
+        .hero .border-box {
+            display: inline-block;
+            border: 2px solid #007BFF;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+        }
+        .hero img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+        .hero .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .hero a {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .hero a:hover {
+            background-color: #0056b3;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            background-color: #1E1E1E;
+            padding: 10px 0;
+        }
+        .nav a {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .nav a:hover {
+            background-color: #0056b3;
+        }
+        .nav a.active {
+            background-color: #0056b3;
+        }
+        .profile-container, .election-container, .info-container, .voting-panel {
+            max-width: 800px;
+            width: 100%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1E1E1E;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .profile-header img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+        .profile-details {
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+        .election-item {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .features, .about, .steps {
+            margin: 20px 0;
+        }
+        .features h2, .about h2, .steps h2 {
+            margin-bottom: 20px;
+        }
+        .steps {
+            text-align: left;
+        }
+        .steps ol {
+            padding-left: 20px;
+        }
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            background-color: #333;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .tab.active {
+            background-color: #007BFF;
+        }
+        .candidate-info, .candidate-list, .submit-container {
+            margin-bottom: 20px;
+        }
+        .candidate-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .candidate-item img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <div class="nav">
+        <a href="#" onclick="showProfilePage()">
+            Personal Info</a>
+            <a href="#" onclick="showElectionsPage()">Elections</a>
+            <a href="#" onclick="showInfoPage()">About</a>
+            <a href="#" onclick="showVotingPanel()">Vote</a>
+        </div>
+    
+        <!-- Placeholder for dynamic content -->
+        <div id="app"></div>
+    
+        <script>
+            const app = document.getElementById('app');
+    
+            function showHomePage() {
+                app.innerHTML = `
+                    <div class="hero">
+                        <div class="border-box">
+                            <h1>BE A PART OF DECISION</h1>
+                            <p>VOTE TODAY</p>
+                        </div>
+                        <img src="vote2.jpg" alt="Voting Image">
+                        <div class="button-container">
+                            <a href="#" onclick="showRegistrationForm()">Register</a>
+                            <a href="#" onclick="showLoginForm()">Login</a>
+                        </div>
+                    </div>
+                `;
+            }
+    
+            function showRegistrationForm() {
+                app.innerHTML = `
+                    <div class="container">
+                        <div class="form-container">
+                            <h2>Registration Form</h2>
+                            <form onsubmit="event.preventDefault(); showLoginForm();">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" id="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dob">Date Of Birth</label>
+                                    <input type="date" id="dob" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="voter-id">Voter ID</label>
+                                    <input type="text" id="voter-id" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mobile">Mobile No.</label>
+                                    <input type="tel" id="mobile" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="repassword">Re-enter Password</label>
+                                    <input type="password" id="repassword" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="parent-name">Father's/Mother's Name</label>
+                                    <input type="text" id="parent-name" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Submit">
+                                </div>
+                            </form>
+                            <a class="link" href="#" onclick="showHomePage()">Back</a>
+                        </div>
+                    </div>
+                `;
+            }
+    
+            function showLoginForm() {
+                app.innerHTML = `
+                    <div class="container">
+                        <div class="form-container">
+                            <h2>Login</h2>
+                            <form onsubmit="event.preventDefault(); showProfilePage();">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Login">
+                                </div>
+                            </form>
+                            <a class="link" href="#" onclick="showHomePage()">Back</a>
+                        </div>
+                    </div>
+                `;
+            }
+    
+            function showProfilePage() {
+                app.innerHTML = `
+                    <div class="profile-container">
+                        <div class="profile-header">
+                            <img src="votttee.jpg" alt="User Avatar">
+                            <div class="profile-details">
+                                <h2>User Name</h2>
+                                <p>Email: user@example.com</p>
+                                <p>Voter ID: 1234567890</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+    
+            function showElectionsPage() {
+                app.innerHTML = `
+                    <div class="election-container">
+                        <h2>Upcoming Elections</h2>
+                        <div class="election-item">
+                            <h3>Presidential Election</h3>
+                            <p>Date: 2024-11-05</p>
+                        </div>
+                        <div class="election-item">
+                            <h3>Parliamentary Election</h3>
+                            <p>Date: 2024-11-12</p>
+                        </div>
+                    </div>
+                `;
+            }
+    
+            function showInfoPage() {
+                app.innerHTML = `
+                    <div class="info-container">
+                        <div class="features">
+                            <h2>Features</h2>
+                            <ul>
+                                <li>Secure and Transparent Voting</li>
+                                <li>Easy Registration Process</li>
+                                <li>Real-time Vote Counting</li>
+                            </ul>
+                        </div>
+                        <div class="about">
+                            <h2>About</h2>
+                            <p>This is an online voting system that allows users to register, login, and participate in elections securely and efficiently.</p>
+                        </div>
+                        <div class="steps">
+                            <h2>How to Use</h2>
+                            <ol>
+                                <li>Register with your details</li>
+                                <li>Login to your account</li>
+                                <li>View upcoming elections</li>
+                                <li>Cast your vote</li>
+                            </ol>
+                        </div>
+                    </div>
+                `;
+            }
+    
+            function showVotingPanel() {
+                app.innerHTML = `
+                    <div class="voting-panel">
+                        <h2>Vote Now</h2>
+                        <div class="tab-container">
+                            <div class="tab" onclick="showCandidates('presidential')">Presidential Election</div>
+                            <div class="tab" onclick="showCandidates('parliamentary')">Parliamentary Election</div>
+                        </div>
+                        <div id="candidate-list"></div>
+                        <div class="submit-container">
+                            <button onclick="submitVote()">Submit Vote</button>
+                        </div>
+                    </div>
+                `;
+            }
+    
+            function showCandidates(electionType) {
+                const candidateList = document.getElementById('candidate-list');
+                let candidateInfo = '';
+                let candidates = '';
+    
+                // Populate candidate info and list based on the election type
+                if (electionType === 'presidential') {
+                    candidateInfo = `
+                        <div class="candidate-info">
+                            <p>Name: John Doe</p>
+                            <p>Age: 45</p>
+                            <p>Party: Independent</p>
+                            <p>Education: PhD in Political Science</p>
+                        </div>
+                    `;
+                    candidates = `
+                        <div class="candidate-list">
+                            <div class="candidate-item">
+                                <label>
+                                    <input type="radio" name="candidate" value="John Doe">
+                                    John Doe
+                                </label>
+                                <span>Independent
+                                </span>
+                            <img src="unified.png" alt="Independent Symbol">
+                        </div>
+                        <!-- Add other candidates here -->
+                    </div>
+                `;
+            } else if (electionType === 'parliamentary') {
+                candidateInfo = `
+                    <div class="candidate-info">
+                        <p>Name: Jane Smith</p>
+                        <p>Age: 50</p>
+                        <p>Party: Green Party</p>
+                        <p>Education: Master's in Environmental Studies</p>
+                    </div>
+                `;
+                candidates = `
+                    <div class="candidate-list">
+                        <div class="candidate-item">
+                            <label>
+                                <input type="radio" name="candidate" value="Jane Smith">
+                                Jane Smith
+                            </label>
+                            <span>Green Party</span>
+                            <img src="congress.png" alt="Green Party Symbol">
+                        </div>
+                        <!-- Add other candidates here -->
+                    </div>
+                `;
+            }
+
+            // Update the HTML content
+            candidateList.innerHTML = candidateInfo + candidates;
+        }
+
+        function submitVote() {
+            const selectedCandidate = document.querySelector('input[name="candidate"]:checked');
+            if (selectedCandidate) {
+                alert('Vote submitted for: ' + selectedCandidate.value);
+                // Additional logic to submit vote to the server
+            } else {
+                alert('Please select a candidate to vote.');
+            }
+        }
+
+        // Initial function call to show the homepage
+        showHomePage();
+    </script>
+</body>
+</html>

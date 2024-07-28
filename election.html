@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            background-color: #151b4e;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 15px;
+        }
+
+        .navbar a:hover {
+            background-color: #0a0e27;
+            border-radius: 5px;
+        }
+
+        .navbar .vote-btn {
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar .vote-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .content h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .election-item {
+            background-color: #1b1b1b;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .election-item label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .election-item input {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            background-color: #2b2b2b;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="profile.html">Personal Info</a>
+        <a href="election.html">Election</a>
+        <a href="contact.html">Contact</a>
+        <a href="vote.html" class="vote-btn">Vote</a>
+    </div>
+    <div class="content">
+        <h2>Upcoming Elections</h2>
+        <div class="election-item">
+            <label>Election:</label>
+            <input type="text" placeholder="mm/dd/yy">
+        </div>
+        <h2>Other Elections</h2>
+        <div class="election-item">
+            <label>Election:</label>
+            <input type="text" placeholder="mm/dd/yy">
+        </div>
+        <div class="election-item">
+            <label>Election:</label>
+            <input type="text" placeholder="mm/dd/yy">
+        </div>
+        <div class="election-item">
+            <label>Election:</label>
+            <input type="text" placeholder="mm/dd/yy">
+        </div>
+        <div class="election-item">
+            <label>Election:</label>
+            <input type="text" placeholder="mm/dd/yy">
+        </div>
+    </div>
+</body>
+</html>

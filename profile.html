@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            background-color: #151b4e;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 15px;
+        }
+
+        .navbar a:hover {
+            background-color: #0a0e27;
+            border-radius: 5px;
+        }
+
+        .navbar .vote-btn {
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar .vote-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .profile-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-picture {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-picture img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+        }
+
+        .profile-info {
+            width: 100%;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-details {
+            width: 100%;
+            border: 2px solid #007bff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-details h2 {
+            margin: 0;
+        }
+
+        .profile-details p {
+            margin: 5px 0;
+        }
+
+        .profile-info h3 {
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+
+        .profile-info p {
+            margin: 5px 0;
+        }
+
+        .edit-profile {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .edit-profile button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .edit-profile button:hover {
+            background-color: #0056b3;
+        }
+
+        .edit-profile input[type="file"] {
+            display: none;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .profile-info p {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #000; /* Black background */
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            color: white; /* White text color */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: white; /* White hover color */
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#">Personal Info</a>
+        <a href="election.html">Elections</a>
+        <a href="#" onclick="showModal('contactModal')">Contact</a>
+        <a href="vote.html" class="vote-btn">Vote</a>
+    </div>
+    <div class="profile-container">
+        <div class="profile-picture">
+            <div class="profile-header">
+                <img src="vote2.jpg" alt="Profile Picture">
+            </div>
+            <div class="edit-profile">
+                <button onclick="document.getElementById('fileInput').click()">Edit Profile Picture</button>
+                <input type="file" id="fileInput" accept="image/*">
+            </div>
+        </div>
+        <div class="profile-info">
+            <div class="profile-details">
+                <h2>User Profile</h2>
+                <h3>Name:</h3>
+                <p>Suraj Kumar Chaudhary</p>
+                <h3>Father's/Mother's Name:</h3>
+                <p>Ajay Kumar Chaudhary</p>
+                <h3>Age:</h3>
+                <p>20</p>
+                <h3>Mobile Number:</h3>
+                <p>9815870776</p>
+                <h3>Email:</h3>
+                <p>surajprasad4082@gmail.com</p>
+                <h3>Voter ID Number:</h3>
+                <p>**** **** ****</p>
+                <h3>Address:</h3>
+                <p>Kaudena, 03 Sarlahi, Malangwa</p>
+                <h3>Eligible:</h3>
+                <p>True</p>
+                <h3>Verified:</h3>
+                <p>True</p>
+            </div>
+            <div class="edit-profile">
+                <button>Edit Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="contactModal" class="modal" aria-labelledby="contactModalLabel" aria-describedby="contactModalDesc">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('contactModal')">&times;</span>
+            <h2 id="contactModalLabel">Contact</h2>
+            <p id="contactModalDesc">
+                Contact Information:
+                <ul>
+                    <li>Email: example@example.com</li>
+                    <li>Phone: +123 456 7890</li>
+                    <li>Address: 123 Voting Street, Democracy City, Country</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = "flex";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        // Close modals when clicking outside of them
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let i = 0; i < modals.length; i++) {
+                if (event.target == modals[i]) {
+                    modals[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
